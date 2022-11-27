@@ -121,30 +121,8 @@ cc_defaults {
 
     multilib: {
         lib64: {
-            product_variables: {
-                malloc_zero_contents: {
-                    cflags: ["-DSCUDO_ZERO_CONTENTS"],
-                },
-                malloc_pattern_fill_contents: {
-                    cflags: ["-DSCUDO_PATTERN_FILL_CONTENTS"],
-                },
-                malloc_not_svelte: {
-                    cflags: ["-DUSE_SCUDO"],
-                },
-            },
         },
         lib32: {
-            product_variables: {
-                malloc_zero_contents: {
-                    cflags: ["-DSCUDO_ZERO_CONTENTS"],
-                },
-                malloc_pattern_fill_contents: {
-                    cflags: ["-DSCUDO_PATTERN_FILL_CONTENTS"],
-                },
-                malloc_not_svelte_libc32: {
-                    cflags: ["-DUSE_SCUDO"],
-                },
-            },
         },
     },
 
@@ -162,6 +140,12 @@ libc_scudo_product_variables = {
             "libc_jemalloc_wrapper",
         ],
     },
+    malloc_zero_contents: {
+        cflags: ["-DSCUDO_ZERO_CONTENTS"],
+    },
+    malloc_pattern_fill_contents: {
+        cflags: ["-DSCUDO_PATTERN_FILL_CONTENTS"],
+    },
 }
 
 libc32_scudo_product_variables = {
@@ -172,6 +156,12 @@ libc32_scudo_product_variables = {
             "libjemalloc5",
             "libc_jemalloc_wrapper",
         ],
+    },
+    malloc_zero_contents: {
+        cflags: ["-DSCUDO_ZERO_CONTENTS"],
+    },
+    malloc_pattern_fill_contents: {
+        cflags: ["-DSCUDO_PATTERN_FILL_CONTENTS"],
     },
 }
 
@@ -192,10 +182,8 @@ cc_defaults {
     header_libs: ["gwp_asan_headers"],
     multilib: {
         lib64: {
-            product_variables: libc_scudo_product_variables,
         },
         lib32: {
-            product_variables: libc32_scudo_product_variables,
         }
     },
 }
